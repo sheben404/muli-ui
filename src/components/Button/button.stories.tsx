@@ -1,35 +1,42 @@
-import { StoryFn } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { Button } from '../../index'
 
-export default {
-  title: 'Button',
+// More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
+const meta = {
+  title: '通用/Button',
   component: Button,
+  tags: ['autodocs'],
+  args: {
+    children: 'test',
+  },
+} satisfies Meta<typeof Button>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
+export const Primary: Story = {
+  args: {
+    btnType: 'primary',
+  },
 }
 
-const Template: StoryFn<typeof Button> = (args) => <Button {...args} />
-
-export const ADefault = Template.bind({})
-ADefault.args = {
-  children: 'Default Button',
+export const Large: Story = {
+  args: {
+    size: 'lg',
+  },
 }
-ADefault.storyName = '默认按钮样式'
 
-export const BButtonWithSize = () => (
-  <>
-    <Button size='lg'> large button </Button>
-    <Button size='sm'> small button </Button>
-  </>
-)
-BButtonWithSize.storyName = '不同尺寸的按钮'
-
-export const CButtonWithType = () => (
-  <>
-    <Button btnType='primary'> primary button </Button>
-    <Button btnType='danger'> danger button </Button>
-    <Button btnType='link' href='https://google.com'>
-      link button
-    </Button>
-  </>
-)
-
-CButtonWithType.storyName = '不同类型的按钮'
+export const Small: Story = {
+  render: () => {
+    return (
+      <>
+        <Button btnType='primary'> primary button </Button>
+        <Button btnType='danger'> danger button </Button>
+        <Button btnType='link' href='https://google.com'>
+          link button
+        </Button>
+      </>
+    )
+  },
+}
