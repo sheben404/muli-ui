@@ -1,5 +1,6 @@
 import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react'
 import classNames from 'classnames'
+import { COMMON_CLS_PREFIX } from '../utils/constants'
 
 export type ButtonSize = 'lg' | 'sm'
 export type ButtonType = 'primary' | 'default' | 'danger' | 'link'
@@ -22,9 +23,9 @@ export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
 export const Button: FC<ButtonProps> = (props) => {
   const { btnType = 'default', className, disabled = false, size, children, href, ...restProps } = props
   // btn, btn-lg, btn-primary
-  const classes = classNames('btn', className, {
-    [`btn-${btnType}`]: btnType,
-    [`btn-${size}`]: size,
+  const classes = classNames(`${COMMON_CLS_PREFIX}-btn`, className, {
+    [`${COMMON_CLS_PREFIX}-btn-${btnType}`]: btnType,
+    [`${COMMON_CLS_PREFIX}-btn-${size}`]: size,
     disabled: btnType === 'link' && disabled,
   })
   if (btnType === 'link' && href) {
