@@ -1,0 +1,30 @@
+import { render, fireEvent } from '@testing-library/react'
+import {{componentName}}, { {{componentName}}Props } from './{{dirName}}'
+import { describe, expect, it, vi } from 'vitest'
+import { COMMON_CLS_PREFIX } from '../utils/constants'
+const defaultProps = {
+  onClick: vi.fn(),
+}
+
+const testProps: {{componentName}}Props = {
+  className: 'custom_class',
+}
+
+describe('test {{componentName}} component', () => {
+  it('should render the correct default {{componentName}}', () => {
+    const wrapper = render(<{{{componentName}}} {...defaultProps}>Nice</{{componentName}}>)
+    const element = wrapper.getByText('Nice') as HTML{{componentName}}Element
+    expect(element).toBeInTheDocument()
+    // expect(element.tagName).toEqual('{{componentName}}')
+    expect(element).toHaveClass(`${COMMON_CLS_PREFIX}-{{dirName}}`)
+    expect(element.disabled).toBeFalsy()
+    fireEvent.click(element)
+    // expect(defaultProps.onClick).toHaveBeenCalled()
+  })
+  it('should render the correct component based on different props', () => {
+    const wrapper = render(<{{componentName}} {...testProps}>Nice</{{componentName}}>)
+    const element = wrapper.getByText('Nice')
+    expect(element).toBeInTheDocument()
+    expect(element).toHaveClass('custom_class')
+  })
+})

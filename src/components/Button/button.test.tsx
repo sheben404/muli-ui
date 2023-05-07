@@ -1,6 +1,7 @@
 import { render, fireEvent } from '@testing-library/react'
 import Button, { ButtonProps } from './button'
 import { describe, expect, it, vi } from 'vitest'
+import { COMMON_CLS_PREFIX } from '../utils/constants'
 const defaultProps = {
   onClick: vi.fn(),
 }
@@ -21,7 +22,7 @@ describe('test Button component', () => {
     const element = wrapper.getByText('Nice') as HTMLButtonElement
     expect(element).toBeInTheDocument()
     expect(element.tagName).toEqual('BUTTON')
-    expect(element).toHaveClass('btn btn-default')
+    expect(element).toHaveClass(`${COMMON_CLS_PREFIX}-btn ${COMMON_CLS_PREFIX}-btn-default`)
     expect(element.disabled).toBeFalsy()
     fireEvent.click(element)
     expect(defaultProps.onClick).toHaveBeenCalled()
@@ -30,7 +31,7 @@ describe('test Button component', () => {
     const wrapper = render(<Button {...testProps}>Nice</Button>)
     const element = wrapper.getByText('Nice')
     expect(element).toBeInTheDocument()
-    expect(element).toHaveClass('btn-primary btn-lg custom_class')
+    expect(element).toHaveClass(`${COMMON_CLS_PREFIX}-btn-primary ${COMMON_CLS_PREFIX}-btn-lg custom_class`)
   })
   it('should render a link when btnType equals link and href is provided', () => {
     const wrapper = render(
@@ -41,7 +42,7 @@ describe('test Button component', () => {
     const element = wrapper.getByText('Link')
     expect(element).toBeInTheDocument()
     expect(element.tagName).toEqual('A')
-    expect(element).toHaveClass('btn btn-link')
+    expect(element).toHaveClass(`${COMMON_CLS_PREFIX}-btn ${COMMON_CLS_PREFIX}-btn-link`)
   })
   it('should render disabled button when disabled set to true', () => {
     const wrapper = render(<Button {...disabledProps}>Nice</Button>)
