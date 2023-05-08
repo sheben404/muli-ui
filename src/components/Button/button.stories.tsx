@@ -6,35 +6,60 @@ const meta = {
   title: '通用/Button',
   component: Button,
   tags: ['autodocs'],
-  args: {
-    children: 'test',
-  },
 } satisfies Meta<typeof Button>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const Primary: Story = {
+export const Default: Story = {
   args: {
-    btnType: 'primary',
+    children: 'defult button',
   },
 }
 
-export const Large: Story = {
-  args: {
-    size: 'lg',
-  },
-}
-
-export const Small: Story = {
-  render: () => {
+export const ButtonType: Story = {
+  render: ({ ...props }) => {
     return (
       <>
-        <Button btnType='primary'> primary button </Button>
-        <Button btnType='danger'> danger button </Button>
-        <Button btnType='link' href='https://google.com'>
+        <Button btnType='primary' {...props}>
+          primary button
+        </Button>
+        <Button btnType='danger' {...props}>
+          danger button
+        </Button>
+        <Button btnType='link' href='https://google.com' {...props}>
           link button
+        </Button>
+      </>
+    )
+  },
+}
+
+export const ButtonSize: Story = {
+  render: ({ ...props }) => {
+    return (
+      <>
+        <Button size='large' {...props}>
+          large button
+        </Button>
+        <Button size='medium' {...props}>
+          medium button
+        </Button>
+        <Button size='small' {...props}>
+          small button
+        </Button>
+      </>
+    )
+  },
+}
+
+export const ButtonStatus: Story = {
+  render: ({ ...props }) => {
+    return (
+      <>
+        <Button disabled {...props}>
+          large button
         </Button>
       </>
     )

@@ -1,7 +1,8 @@
-@mixin button-size($padding-y, $padding-x, $font-size, $border-raduis) {
+@mixin button-size($margin-y, $margin-x, $padding-y, $padding-x, $font-size, $border-radius) {
+  margin: $margin-y $margin-x;
   padding: $padding-y $padding-x;
   font-size: $font-size;
-  border-radius: $border-raduis;
+  border-radius: $border-radius;
 }
 
 @mixin button-style($background, $border, $color, $hover-background: lighten($background, 7.5%), $hover-border: lighten($border, 10%), $hover-color: $color) {

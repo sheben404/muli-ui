@@ -16,7 +16,6 @@ export interface {{componentName}}Props {
 
 export const {{componentName}}: FC<{{componentName}}Props> = (props) => {
   const { className, children, ...restProps } = props
-  // btn, btn-lg, btn-primary
   const classes = classNames(`${COMMON_CLS_PREFIX}-{{dirName}}`, className, {
   })
   return <div className={classes}>

@@ -1,14 +1,16 @@
-import { render, fireEvent } from '@testing-library/react'
-import Button, { ButtonProps } from './button'
+import { fireEvent, render } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { COMMON_CLS_PREFIX } from '../utils/constants'
+import type { ButtonProps } from './button'
+import Button from './button'
+
 const defaultProps = {
   onClick: vi.fn(),
 }
 
 const testProps: ButtonProps = {
   btnType: 'primary',
-  size: 'lg',
+  size: 'large',
   className: 'custom_class',
 }
 
@@ -31,13 +33,13 @@ describe('test Button component', () => {
     const wrapper = render(<Button {...testProps}>Nice</Button>)
     const element = wrapper.getByText('Nice')
     expect(element).toBeInTheDocument()
-    expect(element).toHaveClass(`${COMMON_CLS_PREFIX}-btn-primary ${COMMON_CLS_PREFIX}-btn-lg custom_class`)
+    expect(element).toHaveClass(`${COMMON_CLS_PREFIX}-btn-primary ${COMMON_CLS_PREFIX}-btn-large custom_class`)
   })
   it('should render a link when btnType equals link and href is provided', () => {
     const wrapper = render(
       <Button btnType='link' href='http://dummyurl'>
         Link
-      </Button>
+      </Button>,
     )
     const element = wrapper.getByText('Link')
     expect(element).toBeInTheDocument()

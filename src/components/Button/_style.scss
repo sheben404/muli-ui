@@ -9,7 +9,7 @@
   vertical-align: middle;
   background-image: none;
   border: $btn-border-width solid transparent;
-  @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $border-radius);
+  @include button-size($btn-margin-y, $btn-margin-x, $btn-padding-y, $btn-padding-x, $btn-font-size, $border-radius);
   box-shadow: $btn-box-shadow;
   cursor: pointer;
   transition: $btn-transition;
@@ -22,11 +22,11 @@
       pointer-events: none;
     }
   }
-  &-lg {
-    @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
+  &-large {
+    @include button-size($btn-margin-y-lg, $btn-margin-x-lg, $btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
   }
-  &-sm {
-    @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
+  &-small {
+    @include button-size($btn-margin-y-sm, $btn-margin-x-sm, $btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
   }
   &-primary {
     @include button-style($primary, $primary, $white);

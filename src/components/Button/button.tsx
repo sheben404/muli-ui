@@ -1,28 +1,27 @@
-import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react'
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, FC, ReactNode } from 'react'
 import classNames from 'classnames'
 import { COMMON_CLS_PREFIX } from '../utils/constants'
 
-export type ButtonSize = 'lg' | 'sm'
+export type ButtonSize = 'large' | 'medium' | 'small'
 export type ButtonType = 'primary' | 'default' | 'danger' | 'link'
 
 interface BaseButtonProps {
   className?: string
-  /**设置 Button 的禁用 */
+  /** 设置 Button 的禁用 */
   disabled?: boolean
-  /**设置 Button 的尺寸 */
+  /** 设置 Button 的尺寸 */
   size?: ButtonSize
-  /**设置 Button 的类型 */
+  /** 设置 Button 的类型 */
   btnType?: ButtonType
-  children: React.ReactNode
   href?: string
+  /** children */
+  children?: ReactNode
 }
 type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>
 type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
 
-export const Button: FC<ButtonProps> = (props) => {
-  const { btnType = 'default', className, disabled = false, size, children, href, ...restProps } = props
-  // btn, btn-lg, btn-primary
+export const Button: FC<ButtonProps> = ({ btnType = 'default', className, disabled = false, size = 'medium', children, href, ...restProps }) => {
   const classes = classNames(`${COMMON_CLS_PREFIX}-btn`, className, {
     [`${COMMON_CLS_PREFIX}-btn-${btnType}`]: btnType,
     [`${COMMON_CLS_PREFIX}-btn-${size}`]: size,
@@ -34,7 +33,8 @@ export const Button: FC<ButtonProps> = (props) => {
         {children}
       </a>
     )
-  } else {
+  }
+  else {
     return (
       <button className={classes} disabled={disabled} {...restProps}>
         {children}
