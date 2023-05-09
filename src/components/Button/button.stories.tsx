@@ -5,7 +5,6 @@ import Button from './index'
 const meta = {
   title: '通用/Button',
   component: Button,
-  tags: ['autodocs'],
 } satisfies Meta<typeof Button>
 
 export default meta
@@ -13,22 +12,24 @@ type Story = StoryObj<typeof meta>
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default: Story = {
-  args: {
-    children: 'defult button',
-  },
+  render: props => (
+      <Button {...props}>
+        default button
+      </Button>
+  ),
 }
 
 export const ButtonType: Story = {
-  render: ({ ...props }) => {
+  render: (props) => {
     return (
       <>
-        <Button btnType='primary' {...props}>
+        <Button btnType='primary' >
           primary button
         </Button>
-        <Button btnType='danger' {...props}>
+        <Button btnType='danger' >
           danger button
         </Button>
-        <Button btnType='link' href='https://google.com' {...props}>
+        <Button btnType='link' href='https://google.com' >
           link button
         </Button>
       </>
@@ -37,16 +38,16 @@ export const ButtonType: Story = {
 }
 
 export const ButtonSize: Story = {
-  render: ({ ...props }) => {
+  render: (props) => {
     return (
       <>
-        <Button size='large' {...props}>
+        <Button size='large'>
           large button
         </Button>
-        <Button size='medium' {...props}>
+        <Button size='medium'>
           medium button
         </Button>
-        <Button size='small' {...props}>
+        <Button size='small'>
           small button
         </Button>
       </>
@@ -55,11 +56,11 @@ export const ButtonSize: Story = {
 }
 
 export const ButtonStatus: Story = {
-  render: ({ ...props }) => {
+  render: (props) => {
     return (
       <>
-        <Button disabled {...props}>
-          large button
+        <Button disabled>
+          disabled button
         </Button>
       </>
     )

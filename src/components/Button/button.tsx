@@ -1,4 +1,4 @@
-import type { AnchorHTMLAttributes, ButtonHTMLAttributes, FC, ReactNode } from 'react'
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, FC } from 'react'
 import classNames from 'classnames'
 import { COMMON_CLS_PREFIX } from '../utils/constants'
 
@@ -14,8 +14,7 @@ interface BaseButtonProps {
   /** 设置 Button 的类型 */
   btnType?: ButtonType
   href?: string
-  /** children */
-  children?: ReactNode
+  children?: React.ReactNode
 }
 type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>
 type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>
